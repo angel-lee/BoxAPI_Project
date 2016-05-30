@@ -1,8 +1,23 @@
-<h1>Login#index</h1>
-<p>Find me in app/views/login/index.html.erb</p>
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bank of America Loan Portal</title>
+</head>
+<body>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<div class="center jumbotron">
+		<h1>Welcome to the Loan Application Portal</h1>
+		<h2>Sign in as a customer or as an employee</h2>
 
-<%= button_to "Customer Login", login_login_path, method: :get, class: "btn btn-primary" %>
+		<%= button_to "Customer Login", login_login_path, method: :get, class: "btn btn-lg btn-primary" %>
 
-<br / >
+		<br/>
 
-<a href="https://account.box.com/login/" class = "btn btn-primary" role = "button">Employee Login</a>
+		<a href="https://account.box.com/login/" class = "btn btn-lg btn-primary" role = "button">Employee Login</a>
+	</div>
+</body>
+</html>

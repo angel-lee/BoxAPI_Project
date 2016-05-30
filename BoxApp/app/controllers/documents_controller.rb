@@ -3,7 +3,7 @@ require 'boxr'
 class DocumentsController < ApplicationController
   def index
   	@documents = Document.all
-  	client = Boxr::Client.new('qExAtRp4CM0uAMQ2ms3qng3bP7UJuuV5')
+  	client = Boxr::Client.new('PLmOqa5ejaSjFjslpnvLbQjx48gFSAbp')
   	path = client.folder_from_path('/Uploaded Documents/Angel Lee')
   	@folderItems = client.folder_items(path)
   	@folderItems.each {|i| puts i.name}
@@ -19,7 +19,7 @@ class DocumentsController < ApplicationController
   	if @document.save
   		docPath = @document.attachment.current_path
 
-  		client = Boxr::Client.new('qExAtRp4CM0uAMQ2ms3qng3bP7UJuuV5')
+  		client = Boxr::Client.new('PLmOqa5ejaSjFjslpnvLbQjx48gFSAbp')
 		parentFolder = client.folder_from_path('/Uploaded Documents/Angel Lee')
 		client.upload_file(docPath, parentFolder)
   		redirect_to documents_path, notice: "The document has been uploaded."
@@ -30,28 +30,24 @@ class DocumentsController < ApplicationController
 
   def destroy
   	#@document = Document.find(params[:id])
-  	@item = params[:item]
+  	@item = params[:type]
 
-  	client = Boxr::Client.new('qExAtRp4CM0uAMQ2ms3qng3bP7UJuuV5')
-	#client.delete_file(@item)
-	puts @item
+  	client = Boxr::Client.new('PLmOqa5ejaSjFjslpnvLbQjx48gFSAbp')
+	  client.delete_file(@item['id'])
 
   	#@document.destroy
   	redirect_to documents_path, notice: "The document has been deleted."
   end
 
   def download
-  	item = params[:item]
+  	@item = params[:type]
 
-  	# client = Boxr::Client.new('qExAtRp4CM0uAMQ2ms3qng3bP7UJuuV5')
+  	# client = Boxr::Client.new('PBrQW2XuFQR3Oz1gWafvFgOnCgw3LpsO')
   	# client.download_file(@item_id)
 
-  	begin
-  		client = Boxr::Client.new('qExAtRp4CM0uAMQ2ms3qng3bP7UJuuV5')
-  		client.download_file(@item_id)
-  	rescue Boxr::BoxrError => e
-  		puts e
-  	end
+  	client = Boxr::Client.new('PLmOqa5ejaSjFjslpnvLbQjx48gFSAbp')
+    
+  	client.download_file(@item['id'])
 
   	redirect_to documents_path, notice: "The document has been downloaded."
   end

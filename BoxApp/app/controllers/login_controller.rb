@@ -1,10 +1,10 @@
 class LoginController < ApplicationController
   def index
-
   end
 
+  # handles customer login
   def login
-  	client = Boxr::Client.new('qExAtRp4CM0uAMQ2ms3qng3bP7UJuuV5')
+  	client = Boxr::Client.new('PLmOqa5ejaSjFjslpnvLbQjx48gFSAbp')
 	parentFolder = client.folder_from_path('/Uploaded Documents')
 	name = 'Angel Lee'
 

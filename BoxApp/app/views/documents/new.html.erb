@@ -1,19 +1,33 @@
-<% if !@document.errors.empty? %>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Upload Document</title>
+</head>
+<body>
+	<br/>
+	<br/>
+	<br/>
+
+	<% if !@document.errors.empty? %>
 	<div class = "alert alert-error">
 		<ul>
 			<% @document.errors.full_messages.each do |msg| %>
-				<li><%= msg %></li>
+			<li><%= msg %></li>
 			<% end %>
 		</ul>
 	</div>
-<% end %>
+	<% end %>
 
-<div class = "well">
-	<%= form_for @document, html: { multipart: true } do |f| %>
+	<div class = "well" align="center">
+		<%= form_for @document, html: { multipart: true } do |f| %>
 		<%= f.label :name %>
 		<%= f.text_field :name %>
 		<%= f.label :attachment %>
 		<%= f.file_field :attachment %>
-		<%= f.submit "Save", class: "btn btn-primary" %>
+		<br/>
+		<%= f.submit "Upload", class: "btn btn-primary" %>
+		<%= link_to "Cancel", documents_index_path, class: "btn btn-primary" %>
 	<% end %>
 </div>
+</body>
+</html>

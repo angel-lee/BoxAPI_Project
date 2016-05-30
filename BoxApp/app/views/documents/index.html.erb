@@ -5,7 +5,12 @@
 </head>
 
 <body>
-	<h1>Bank of America Loan Document Uploader</h1>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<h1>Loan Documents</h1>
+	<h2>Please upload the documents needed to process your loan application.</h2>
 
 	<% if !flash[:notice].blank? %>
 		<div class = "alert alert-info">
@@ -13,10 +18,6 @@
 		</div>
 	<% end %>
 
-	<br />
-
-	<%= link_to "New Document", new_document_path, class: "btn btn-primary" %>
-	<br />
 	<br />
 
 	<table class = "table table-bordered table-striped">
@@ -33,10 +34,14 @@
 				<tr>
 					<td><%= item.name %></td>
 					<td><%= link_to "Download Document", documents_download_path(@item, :type=> item), method: :get %></td>
-					<td><%= button_to "Delete", documents_destroy_path(@item, :type=> item.type), method: :delete %></td>		
+					<td><%= button_to "Delete", documents_destroy_path(@item, :type=> item), method: :delete %></td>		
 				</tr>
 			<% end %>
 		</tbody>
 	</table>
+
+	<div class="center">
+		<%= link_to "Add Document", new_document_path, class: "btn btn-primary" %>
+	</div>
 </body>
 </html>
