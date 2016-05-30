@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bank of America Loan Portal</title>
+</head>
+
+<body>
+	<h1>Bank of America Loan Document Uploader</h1>
+
+	<% if !flash[:notice].blank? %>
+		<div class = "alert alert-info">
+			<%= flash[:notice] %>
+		</div>
+	<% end %>
+
+	<br />
+
+	<%= link_to "New Document", new_document_path, class: "btn btn-primary" %>
+	<br />
+	<br />
+
+	<table class = "table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Download Link</th>
+				<th> </th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<% @folderItems.each do |item| %>
+				<tr>
+					<td><%= item.name %></td>
+					<td><%= link_to "Download Document", documents_download_path(@item, :type=> item), method: :get %></td>
+					<td><%= button_to "Delete", documents_destroy_path(@item, :type=> item.type), method: :delete %></td>		
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</body>
+</html>

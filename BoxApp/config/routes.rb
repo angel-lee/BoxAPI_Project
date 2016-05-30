@@ -1,14 +1,27 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
-  # post 'welcome/index'
-  
+  get 'login/index'
+
+  get 'login/login'
+
+  get 'documents/index'
+
+  get 'documents/new'
+
+  get 'documents/create'
+
+  delete 'documents/destroy'
+
+  get 'documents/download'
+
+  resources :documents, only: [:index, :new, :create, :destroy, :download]
+  root "login#index"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
+  # root 'welcome#index'
 
-  post 'welcome/create'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
