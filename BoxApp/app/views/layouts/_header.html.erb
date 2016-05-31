@@ -1,12 +1,24 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-	<div class="container">
-		<%= link_to "sample app", '#', id: "logo" %>
-		<nav>
-			<ul class="nav navbar-nav navbar-right">
-				<li><%= link_to "Home", '#'%></li>
-				<li><%= link_to "Help", '#'%></li>
-				<li><%= link_to "Profile", '#'%></li>
-			</ul>
-		</nav>
-	</div>
+<header>
+	<div class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+    		<div class="navbar-header">
+      			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        			<span class="sr-only">Toggle Navigation</span>
+        			<span class="icon-bar"></span>
+        			<span class="icon-bar"></span>
+        			<span class="icon-bar"></span>
+      			</button>
+
+      			<%= link_to image_tag("logo.jpg", :alt=> "Bank of America Logo"), login_index_path, :method => :get, id: "logo" %>
+    		</div> <!-- end div class="navbar-header" -->
+
+    		<div class="collapse navbar-collapse">
+      			<ul class="nav navbar-nav navbar-right">
+      				<li><%= link_to "Home", login_index_path%></li>
+      				<li><%= link_to "About", documents_about_path%></li>
+					<li><%= link_to "Help", documents_help_path%></li>
+      			</ul>
+    		</div> 
+  		</div> 
+	</div> 
 </header>

@@ -4,9 +4,8 @@
 	<title>Upload Document</title>
 </head>
 <body>
-	<br/>
-	<br/>
-	<br/>
+	<h3>Upload Tool</h3>
+	<h2>Accepted file formats (.pdf, .doc, .htm, .html, .docx, .zip)</h2>
 
 	<% if !@document.errors.empty? %>
 	<div class = "alert alert-error">
@@ -20,9 +19,7 @@
 
 	<div class = "well" align="center">
 		<%= form_for @document, html: { multipart: true } do |f| %>
-		<%= f.label :name %>
-		<%= f.text_field :name %>
-		<%= f.label :attachment %>
+		<%= f.label "Attach File" %>
 		<%= f.file_field :attachment %>
 		<br/>
 		<%= f.submit "Upload", class: "btn btn-primary" %>

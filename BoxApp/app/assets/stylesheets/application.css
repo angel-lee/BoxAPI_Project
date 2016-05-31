@@ -18,9 +18,11 @@
  @import "bootstrap";
 
  /* universal */
-
+* {
+	font-family: Verdana;
+}
  body {
- 	padding-top 60px;
+ 	padding-top: 90px;
  }
 
  section {
@@ -39,20 +41,74 @@
 	margin-bottom: 10px;
  }
 
- /* typography */
-
- h1, h2, h3, h4, h5, h6 {
- 	line-height: 1;
+ .btn-primary {
+ 	background-color: #124e89;
  }
 
- h1 {
+/* header */ 
+
+header div div div {
+	padding-top: 20px;
+
+}
+
+.navbar {
+	background-color: #fff;
+}
+
+#logo {
+	float: left;
+}
+
+header div div div ul li {
+	font-size: 1.3em;
+}
+
+/* carousel */
+.slide1, .slide2, .slide3 {
+	min-height: 550px; /* Must have a height or min-height set due to use of background images */
+	background-size: cover;
+	background-position: center center;
+}
+.slide1 {
+	background-image: url("image2.jpg");
+}
+.slide2 {
+	background-image: url("image3.jpg");
+}
+.slide3 {
+	background-image: url("image4.jpg");
+}
+
+.carousel-overlay {
+	position: absolute;
+	bottom: 100px;
+	right: 0;
+	left: 0;
+	color: white;
+	text-shadow: 1px 1px 1px rgba(0,0,0,.75);
+}
+
+.carousel-overlay h1 {
+    font-size: 3.5em;
+}
+
+
+/* typography */
+
+h1, h2, h3, h4, h5, h6 {
+ 	line-height: 1;
+ 	text-align: center;
+}
+
+h1 {
  	font-size: 3em;
  	letter-spacing: -2px;
  	margin-bottom: 30px;
  	text-align: center;
- }
+}
 
- h2 {
+ h4 {
  	font-size: 1.2em;
  	letter-spacing: -1px;
  	margin-bottom: 30px;
@@ -66,21 +122,10 @@
  	line-height: 1.7em;
  }
 
- /* footer */
+/* footer */
 
  footer {
- 	border-top: 1px solid #eaeaea;
- 	color: #777;
  	position: fixed;
  	bottom: 0;
+ 	width: 80%;
  }
-
- footer ul {
- 	float: right;
- 	list-style: none;
- }
-
- footer ul li {
- 	float: left;
- 	margin-left: 15px;
-}

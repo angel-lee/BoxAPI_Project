@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Bank of America Loan Portal</title>
+	<title>BOA Loan Portal</title>
 </head>
 
 <body>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
 	<h1>Loan Documents</h1>
-	<h2>Please upload the documents needed to process your loan application.</h2>
+	<h4>Please upload the documents needed to process your loan application.</h4>
 
 	<% if !flash[:notice].blank? %>
 		<div class = "alert alert-info">
@@ -25,23 +21,23 @@
 			<tr>
 				<th>Name</th>
 				<th>Download Link</th>
-				<th> </th>
+				<th>Delete File</th>
 			</tr>
 		</thead>
 
 		<tbody>
-			<% @folderItems.each do |item| %>
+			<% @folder_items.each do |item| %>
 				<tr>
-					<td><%= item.name %></td>
+					<td><%= link_to item.name %></td>
 					<td><%= link_to "Download Document", documents_download_path(@item, :type=> item), method: :get %></td>
-					<td><%= button_to "Delete", documents_destroy_path(@item, :type=> item), method: :delete %></td>		
+					<td><%= button_to "Delete", documents_destroy_path(@item, :type=> item), method: :delete, class:"btn btn-danger"%></td>		
 				</tr>
 			<% end %>
 		</tbody>
 	</table>
 
 	<div class="center">
-		<%= link_to "Add Document", new_document_path, class: "btn btn-primary" %>
+		<%= link_to "Add Document", new_document_path, class: "btn btn-lg btn-primary" %>
 	</div>
 </body>
 </html>
