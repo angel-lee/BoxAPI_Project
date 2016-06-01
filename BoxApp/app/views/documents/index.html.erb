@@ -15,29 +15,35 @@
 	<% end %>
 
 	<br />
-
-	<table class = "table table-bordered table-striped">
+	
+	<div class="col-md-3"></div>
+	<div class="col-md-6">
+		<table class = "table table-bordered table-striped">
 		<thead>
 			<tr>
-				<th>Name</th>
-				<th>Download Link</th>
-				<th>Delete File</th>
+				<th class="">Files</th>
+				<th class="">Options</th>
+				<!-- <th>Delete</th> -->
 			</tr>
 		</thead>
 
 		<tbody>
 			<% @folder_items.each do |item| %>
 				<tr>
-					<td><%= link_to item.name %></td>
-					<td><%= link_to "Download Document", documents_download_path(@item, :type=> item), method: :get %></td>
-					<td><%= button_to "Delete", documents_destroy_path(@item, :type=> item), method: :delete, class:"btn btn-danger"%></td>		
+					<td class=""><%= link_to item.name, documents_preview_path(@item, :type=> item), :title=>'Preview File', :rel => 'tooltip'  %> 
+					</td>
+					<td class=""><%= link_to '<i class="glyphicon glyphicon-save"></i>'.html_safe, documents_download_path(@item, :type=> item), method: :get, class:"btn btn-success", :title=>'Download', :rel => 'tooltip' %> 
+					<%= link_to '<i class="glyphicon glyphicon-trash"></i>'.html_safe, documents_destroy_path(@item, :type=> item), method: :delete, class:"btn btn-danger", :title=>'Delete', :rel => 'tooltip'  %></td>
+	
 				</tr>
 			<% end %>
 		</tbody>
 	</table>
 
-	<div class="center">
+<div class="center">
 		<%= link_to "Add Document", new_document_path, class: "btn btn-lg btn-primary" %>
+	</div>
+
 	</div>
 </body>
 </html>

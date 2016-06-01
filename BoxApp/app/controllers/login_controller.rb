@@ -3,7 +3,7 @@ class LoginController < ApplicationController
 
 	# get the client, sets root folder
   	def get_client
-    	@client = Boxr::Client.new('OIKx5i9kZTKwlVeBcHATgUdyqmYqVkPR')
+    	@client = Boxr::Client.new('deaubbbksOulhK2foedqWg7hEJh6OOY6')
     	# @client = params[:client]
     	# puts @client
     	@home_folder_name = '/Uploaded Documents/'

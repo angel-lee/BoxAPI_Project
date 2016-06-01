@@ -13,6 +13,10 @@ Rails.application.routes.draw do
 
   get 'documents/download'
 
+  get 'documents/preview'
+
+  get 'documents/redirect'
+
   get 'documents/help'
 
   get 'documents/about'
@@ -21,7 +25,7 @@ Rails.application.routes.draw do
     resources :documents
   end
 
-  resources :documents, only: [:index, :new, :create, :destroy, :download]
+  resources :documents, only: [:index, :new, :create, :destroy, :download, :preview]
   root "login#index"
 
 

@@ -1,12 +1,11 @@
 require 'boxr'
-require 'open-uri'
 
 class DocumentsController < ApplicationController
   before_filter :get_client
 
   # get the client, sets root folder
   def get_client
-    @client = Boxr::Client.new('OIKx5i9kZTKwlVeBcHATgUdyqmYqVkPR')
+    @client = Boxr::Client.new('deaubbbksOulhK2foedqWg7hEJh6OOY6')
     # @client = params[:client]
     # puts 'Hi'  
     # puts @client 
@@ -18,21 +17,21 @@ class DocumentsController < ApplicationController
 
   # displays items in the user's folder
   def index
-  	# @documents = Document.all
+    # @documents = Document.all
     # @client = params[:type]
-  	path = @client.folder_from_path(@user_folder_name)
-  	@folder_items = @client.folder_items(path)
+    path = @client.folder_from_path(@user_folder_name)
+    @folder_items = @client.folder_items(path)
     # @folderItems = @client.folder_items(@userFolder)
-  	@folder_items.each {|i| puts i.name}
+    @folder_items.each {|i| puts i.name}
   end
 
   def new
-  	@document = Document.new
+    @document = Document.new
   end
 
   # upload a new document
   def create
-  	@document = Document.new(document_params)
+    @document = Document.new(document_params)
     # @client = params[:type]
 
     begin
@@ -48,41 +47,51 @@ class DocumentsController < ApplicationController
 
   # delete a document
   def destroy
-  	#@document = Document.find(params[:id])
-  	@item = params[:type]
+    #@document = Document.find(params[:id])
+    @item = params[:type]
     # @client = params[:type]
-	  @client.delete_file(@item['id'])
+    @client.delete_file(@item['id'])
 
-  	#@document.destroy
-  	redirect_to documents_path, notice: "The document has been deleted."
+    #@document.destroy
+    redirect_to documents_path, notice: "The document has been deleted."
   end
 
   # download a document
   def download
-  	@item = params[:type]
-    # @client = params[:type]
+    @item = params[:type]
 
-  	file = @client.download_file(@item['id'])
+    file = @client.download_file(@item['id'])
+    f = File.open("./#{@item['name']}", 'wb')
+    f.write(file)
+    f.close
 
-    downloads_directory = Dir.home + "/Downloads"
+    send_data file, :disposition => 'attachment', :filename=>"#{@item['name']}"
 
-    f = File.open("#{downloads_directory}/#{@item['name']}", 'wb')
-      f.write(file)
-      f.close
+    File.delete("./#{@item['name']}")
 
-  	redirect_to documents_path, notice: "The document has been downloaded."
+   #  downloads_directory = Dir.home + "/Downloads"
+
+   #  f = File.open("#{downloads_directory}/#{@item['name']}", 'wb')
+   #    f.write(file)
+   #    f.close
+
+    # redirect_to documents_path, notice: "The document has been downloaded."
+
+    # redirect_to file
   end
 
   # view a document
   def preview
     @item = params[:type]
-    url = @client.embed_url(@item['id'])
+    @preview_url = @client.embed_url(@item['id'])
+  end
 
-    puts url
+  def redirect
+    redirect_to documents_path
   end
 
   private
-  	def document_params
-  	params.require(:document).permit(:attachment)
+    def document_params
+    params.require(:document).permit(:attachment)
   end
 end

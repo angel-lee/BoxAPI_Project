@@ -8,9 +8,12 @@ Once logged in as an employee, the user can view all folders and files.
 
 ### Installation
 
-The demo requires [Rails](http://railsinstaller.org/en) to run.
+The demo requires [Rails](http://railsinstaller.org/en) and a [Box developer token](https://developer.box.com) to run.
 
-To run the demo, first download the project.
+To run the demo, first download the project. 
+
+In the `login_controller.rb` and `documents_controller.rb` files, paste your developer token in the `get_client` method where `DEV TOKEN` is. 
+
 
 cd to the project folder, then:
 ```sh
@@ -24,8 +27,9 @@ Navigate to [localhost:3000](http://localhost:3000/) to view the demo
 
 Open source projects that were used:
 
+* [Box API](https://docs.box.com/reference)
+* [Boxr](https://github.com/cburnette/boxr)
 * [Ruby](https://www.ruby-lang.org/en/downloads/)
 * [Rails](http://railsinstaller.org/en) 
 * [Twitter Bootstrap](http://getbootstrap.com/getting-started/#download)
-* [Boxr](https://github.com/cburnette/boxr)
 * [CarrierWave](https://github.com/carrierwaveuploader/carrierwave)

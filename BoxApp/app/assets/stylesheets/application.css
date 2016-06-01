@@ -14,15 +14,17 @@
  *= require_self
  */
 
- @import "bootstrap-sprockets";
- @import "bootstrap";
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
  /* universal */
 * {
 	font-family: Verdana;
 }
  body {
- 	padding-top: 90px;
+ 	padding-top: 70px;
  }
 
  section {
@@ -66,7 +68,7 @@ header div div div ul li {
 
 /* carousel */
 .slide1, .slide2, .slide3 {
-	min-height: 550px; /* Must have a height or min-height set due to use of background images */
+	min-height: 550px; 
 	background-size: cover;
 	background-position: center center;
 }
