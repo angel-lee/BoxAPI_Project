@@ -5,10 +5,8 @@ class DocumentsController < ApplicationController
 
   # get the client, sets root folder
   def get_client
-    @client = Boxr::Client.new('deaubbbksOulhK2foedqWg7hEJh6OOY6')
-    # @client = params[:client]
-    # puts 'Hi'  
-    # puts @client 
+    @client = Boxr::Client.new('DEV_TOKEN') # put Dev Token here
+    
     @home_folder_name = '/Uploaded Documents/'
     @parent_folder = @client.folder_from_path(@home_folder_name)
     @user_name = @client.current_user.name
@@ -17,11 +15,8 @@ class DocumentsController < ApplicationController
 
   # displays items in the user's folder
   def index
-    # @documents = Document.all
-    # @client = params[:type]
     path = @client.folder_from_path(@user_folder_name)
     @folder_items = @client.folder_items(path)
-    # @folderItems = @client.folder_items(@userFolder)
     @folder_items.each {|i| puts i.name}
   end
 
@@ -32,7 +27,6 @@ class DocumentsController < ApplicationController
   # upload a new document
   def create
     @document = Document.new(document_params)
-    # @client = params[:type]
 
     begin
       doc_path = @document.attachment.current_path
@@ -40,7 +34,6 @@ class DocumentsController < ApplicationController
       @client.upload_file(doc_path, user_folder)
       redirect_to documents_path, notice: "The document has been uploaded."
     rescue Boxr::BoxrError => e
-      # render "new"
       redirect_to documents_path, alert: "The document could not be uploaded."
     end
   end
@@ -49,9 +42,7 @@ class DocumentsController < ApplicationController
   def destroy
     #@document = Document.find(params[:id])
     @item = params[:type]
-    # @client = params[:type]
     @client.delete_file(@item['id'])
-
     #@document.destroy
     redirect_to documents_path, notice: "The document has been deleted."
   end
@@ -68,16 +59,6 @@ class DocumentsController < ApplicationController
     send_data file, :disposition => 'attachment', :filename=>"#{@item['name']}"
 
     File.delete("./#{@item['name']}")
-
-   #  downloads_directory = Dir.home + "/Downloads"
-
-   #  f = File.open("#{downloads_directory}/#{@item['name']}", 'wb')
-   #    f.write(file)
-   #    f.close
-
-    # redirect_to documents_path, notice: "The document has been downloaded."
-
-    # redirect_to file
   end
 
   # view a document

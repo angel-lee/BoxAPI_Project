@@ -10,9 +10,11 @@ Once logged in as an employee, the user can view all folders and files.
 
 The demo requires [Rails](http://railsinstaller.org/en) and a [Box developer token](https://developer.box.com) to run.
 
+In your Box account, create a folder titled **Uploaded Documents**. This is where all of the uploaded documents will be stored.
+
 To run the demo, first download the project. 
 
-In the `login_controller.rb` and `documents_controller.rb` files, paste your developer token in the `get_client` method where `DEV TOKEN` is. 
+Go into **/BoxApp/app/controllers**. In the `login_controller.rb` and `documents_controller.rb` files, paste your developer token in the `get_client` method where `DEV_TOKEN` is. 
 
 
 cd to the project folder, then:

@@ -1,6 +1,6 @@
 <%= link_to '<i class="glyphicon glyphicon-arrow-left"></i>'.html_safe, documents_redirect_path, method: :get, class:"btn btn-primary", :title=>'Close Preview', :rel => 'tooltip' %>
 <h2><%= @item['name'] %></h2>
 <div class="container" align="center">
-	<iframe src=<%= @preview_url %> width="600" height="450" align="center"></iframe>
+	<iframe src=<%= @preview_url %> width="70%" height="450" align="center"></iframe>
 	<p></p>
 </div>
